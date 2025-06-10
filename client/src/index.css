@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* For debugging, force this gradient style */
+.btn-primary-gradient {
+  /* background: linear-gradient(90deg, #ff246d 0%, #ff4bc3 100%); */
+  background: linear-gradient(to right, #dc2626, #db2777, #f472b6);
+
+  color: white;
+}
+
+.txt-pink {
+  color: #fff5e4;
+}
+
+.txt-mauve {
+  color: #c2649b;
+}
+
+.txt-blue {
+  color: #915bf4;
+}
+
+.txt-purple {
+  color: #501f5a;
+}
+
+.txt-dark {
+  color: #271539;
+}
+
+.bcg-pink {
+  background-color: #fff5e4;
+}
+
+.bcg-mauve {
+  background-color: #c2649b;
+}
+
+.bcg-blue {
+  background-color: #915bf4;
+}
+
+.bcg-purple {
+  background-color: #501f5a;
+}
+
+.bcg-dark {
+  background-color: #271539;
+}
+
+.bdr-pink {
+  background-color: #fff5e4;
+}
+
+.bdr-mauve {
+  background-color: #c2649b;
+}
+
+.bdr-blue {
+  background-color: #915bf4;
+}
+
+.bdr-purple {
+  background-color: #501f5a;
+}
+
+.bdr-dark {
+  background-color: #271539;
+}
+
+
+
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-right {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.toast {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.toast-leave {
+  animation: slide-out-right 0.3s ease-in forwards;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Add styles for PDF generation */
+.timetable-container {
+  background-color: white;
+  padding: 20px;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.timetable-table th,
+.timetable-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.timetable-table th {
+  background-color: #3b82f6;
+  color: white;
+}
