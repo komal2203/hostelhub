@@ -317,8 +317,8 @@ export default function MessRating() {
     const average =
       totalRatings > 0
         ? (
-            displayed.reduce((sum, r) => sum + r.rating, 0) / totalRatings
-          ).toFixed(2)
+          displayed.reduce((sum, r) => sum + r.rating, 0) / totalRatings
+        ).toFixed(2)
         : 0;
 
     const { highest, lowest } = getDayStats(displayed);
@@ -739,7 +739,7 @@ export default function MessRating() {
 
                     {image && (
                       <img
-                        src={`http://localhost:5000${image}`}
+                        src={`${import.meta.env.VITE_BACKEND_URI}${image}`}
                         alt="Uploaded"
                         className="mt-2 max-w-[60] rounded border border-pink-300"
                       />

@@ -76,7 +76,7 @@ export default function LostItemCard({ item, onMarkFound }) {
       {item.image && (
         <div className="relative aspect-w-16 aspect-h-9">
           <img
-            src={`http://localhost:5000/${item.image}`}
+            src={`${import.meta.env.VITE_BACKEND_URI}/${item.image}`}
             alt={item.title}
             className="w-full h-48 object-cover"
           />
