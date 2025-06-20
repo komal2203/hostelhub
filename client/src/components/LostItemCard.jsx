@@ -5,7 +5,7 @@ export default function LostItemCard({ item, onMarkFound }) {
 
   const handleMarkFound = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/lost/${item._id}/found`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/lost/${item._id}/found`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

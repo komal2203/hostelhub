@@ -13,7 +13,7 @@ export default function Polls() {
 
   const fetchPolls = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/polls");
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/polls`);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const data = await response.json();
       setPolls(data);
@@ -48,7 +48,7 @@ export default function Polls() {
 
       console.log("Formatted data:", formattedData);
 
-      const response = await fetch("http://localhost:5000/api/polls", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/polls`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +84,7 @@ export default function Polls() {
         throw new Error("No authentication token found");
       }
 
-      const response = await fetch(`http://localhost:5000/api/polls/${pollId}/vote`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/polls/${pollId}/vote`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +122,7 @@ export default function Polls() {
 
       console.log("Attempting to delete poll:", pollId); // Add this for debugging
 
-      const response = await fetch(`http://localhost:5000/api/polls/${pollId}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/polls/${pollId}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`,

@@ -186,7 +186,7 @@ export default function MessRating() {
   // Fetch ratings from backend
   const fetchRatings = () => {
     setLoading(true);
-    fetch("http://localhost:5000/api/mess")
+    fetch(`${import.meta.env.VITE_BACKEND_URI}/api/mess`)
       .then((res) => res.json())
       .then((data) => {
         setMessage("");
@@ -233,7 +233,7 @@ export default function MessRating() {
 
   async function handleVote(ratingId, type) {
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://localhost:5000/api/mess/${ratingId}/vote`, {
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/mess/${ratingId}/vote`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

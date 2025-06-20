@@ -18,7 +18,7 @@ export default function LostItemForm({ onItemSubmit }) {
     });
 
     try {
-      const response = await fetch('http://localhost:5000/api/lost', {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/lost`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

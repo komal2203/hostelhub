@@ -72,7 +72,7 @@ export default function RatingForm({ onNewRating }) {
         formData.append("image", imageFile);
       }
 
-      const res = await fetch("http://localhost:5000/api/mess", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/mess`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

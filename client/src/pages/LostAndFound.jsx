@@ -14,7 +14,7 @@ export default function LostAndFound() {
 
   const fetchLostItems = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/lost");
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/lost`);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const data = await response.json();
       setLostItems(Array.isArray(data) ? data : []);

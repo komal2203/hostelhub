@@ -12,7 +12,7 @@ export default function Login({ onLogin }) {
       return alert("Both fields are required");
     }
 
-    const res = await fetch("http://localhost:5000/api/auth/login", {
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -64,7 +64,7 @@ export default function Login({ onLogin }) {
   //       </button>
 
   //       <p className="text-center text-gray-600 text-sm">
-  //         Don’t have an account?{" "}
+  //         Don't have an account?{" "}
   //         <Link
   //           to="/register"
   //           className="text-blue-600 font-medium hover:underline hover:text-blue-800 transition"
@@ -123,7 +123,7 @@ export default function Login({ onLogin }) {
   //       </button>
 
   //       <p className="text-center text-gray-900 text-sm">
-  //         Don’t have an account?{" "}
+  //         Don't have an account?{" "}
   //         <Link
   //           to="/register"
   //           className="text-white font-medium hover:underline hover:text-blue-300 transition"
@@ -180,7 +180,7 @@ export default function Login({ onLogin }) {
         </button>
 
         <p className="text-center text-white text-sm">
-          Don’t have an account?{" "}
+          Don't have an account?{" "}
           <Link
             to="/register"
             className="text-white font-medium underline hover:text-pink-600 transition"
