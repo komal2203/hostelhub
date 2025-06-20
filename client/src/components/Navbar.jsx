@@ -173,9 +173,9 @@ export default function Navbar({ onLogout }) {
           <Link to="/home/lost" className="hover:text-rose-700 transition">
             Lost & Found
           </Link>
-          <Link to="/home/polls" className="hover:text-rose-700 transition">
+          {/* <Link to="/home/polls" className="hover:text-rose-700 transition">
             Quick Polls
-          </Link>
+          </Link> */}
           <button
             onClick={handleLogout}
             className="text-red-500 hover:text-red-700 font-medium transition"
@@ -203,13 +203,13 @@ export default function Navbar({ onLogout }) {
             >
               Lost & Found
             </Link>
-            <Link
+            {/* <Link
               to="/home/polls"
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-rose-700 transition ease-in-out duration-100 hover:scale-105"
             >
               Quick Polls
-            </Link>
+            </Link> */}
             <button
               onClick={handleLogout}
               className="text-red-500 hover:text-red-700 font-medium transition text-left ease-in-out duration-100 hover:scale-105"

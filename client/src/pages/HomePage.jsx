@@ -598,7 +598,7 @@ export default function HomePage() {
             <div className="py-20 bg-rose-100">
                 <div className="container mx-auto px-4">
                     <h2 className="text-3xl font-bold text-center mb-12 text-rose-800">Why Choose HostelHub?</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-30 max-w-6xl mx-auto">
 
                         <Link to="/home/mess">
                             <motion.div
@@ -631,7 +631,7 @@ export default function HomePage() {
                                 <p className="text-gray-600">Lost something? Found something? Our platform helps you connect with your belongings.</p>
                             </motion.div>
                         </Link>
-
+                        {/* 
                         <Link to="/home/polls">
                             <motion.div
                                 className="bg-white p-8 rounded-xl h-full shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1 hover:scale-105"
@@ -646,7 +646,7 @@ export default function HomePage() {
                                 <h3 className="text-xl font-semibold mb-4 text-rose-700">Quick Polls</h3>
                                 <p className="text-gray-600">Participate in hostel polls and make your voice heard in important decisions.</p>
                             </motion.div>
-                        </Link>
+                        </Link> */}
 
                     </div>
                 </div>
