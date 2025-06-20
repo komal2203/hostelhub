@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useToast } from "./ToastContext"; 
+import { useToast } from "./ToastContext";
 // or without extension (if vite resolves .js/.jsx):
-
-
 
 export default function RatingForm({ onNewRating }) {
   const [rating, setRating] = useState("");
@@ -17,15 +15,35 @@ export default function RatingForm({ onNewRating }) {
 
   // Generate meal options
   const mealOptions = [
-    'Monday-Breakfast', 'Monday-Lunch', 'Monday-Snacks', 'Monday-Dinner',
-    'Tuesday-Breakfast', 'Tuesday-Lunch', 'Tuesday-Snacks', 'Tuesday-Dinner',
-    'Wednesday-Breakfast', 'Wednesday-Lunch', 'Wednesday-Snacks', 'Wednesday-Dinner',
-    'Thursday-Breakfast', 'Thursday-Lunch', 'Thursday-Snacks', 'Thursday-Dinner',
-    'Friday-Breakfast', 'Friday-Lunch', 'Friday-Snacks', 'Friday-Dinner',
-    'Saturday-Breakfast', 'Saturday-Lunch', 'Saturday-Snacks', 'Saturday-Dinner',
-    'Sunday-Breakfast', 'Sunday-Lunch', 'Sunday-Snacks', 'Sunday-Dinner'
+    "Monday-Breakfast",
+    "Monday-Lunch",
+    "Monday-Snacks",
+    "Monday-Dinner",
+    "Tuesday-Breakfast",
+    "Tuesday-Lunch",
+    "Tuesday-Snacks",
+    "Tuesday-Dinner",
+    "Wednesday-Breakfast",
+    "Wednesday-Lunch",
+    "Wednesday-Snacks",
+    "Wednesday-Dinner",
+    "Thursday-Breakfast",
+    "Thursday-Lunch",
+    "Thursday-Snacks",
+    "Thursday-Dinner",
+    "Friday-Breakfast",
+    "Friday-Lunch",
+    "Friday-Snacks",
+    "Friday-Dinner",
+    "Saturday-Breakfast",
+    "Saturday-Lunch",
+    "Saturday-Snacks",
+    "Saturday-Dinner",
+    "Sunday-Breakfast",
+    "Sunday-Lunch",
+    "Sunday-Snacks",
+    "Sunday-Dinner",
   ];
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +55,7 @@ export default function RatingForm({ onNewRating }) {
     }
 
     if (!mealTag) {
-      setErrors(prev => ({ ...prev, mealTag: "Please select a meal" }));
+      setErrors((prev) => ({ ...prev, mealTag: "Please select a meal" }));
       return;
     }
 
@@ -49,7 +67,6 @@ export default function RatingForm({ onNewRating }) {
       formData.append("comment", comment);
       formData.append("isAnonymous", isAnonymous ? "true" : "false");
       formData.append("mealTag", mealTag);
-
 
       if (imageFile) {
         formData.append("image", imageFile);
@@ -67,7 +84,7 @@ export default function RatingForm({ onNewRating }) {
         // alert("Rating submitted!");
         // inside handleSubmit success:
         toast("Rating submitted!", "success");
-        
+
         setRating("");
         setComment("");
         setIsAnonymous(false);
@@ -243,13 +260,13 @@ export default function RatingForm({ onNewRating }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col h-full pb-6 pt-4"
+      className="flex flex-col mt-3 pt-3 pb-6  border-none rounded-lg"
       style={{ minHeight: 0 }}
     >
       <h2 className="text-md md:text-xl font-semibold mb-6 text-pink-700">
         Submit Your Rating 😊
       </h2>
-  
+
       {/* Meal Selection - Moved to top */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-pink-700 mb-1">
@@ -272,7 +289,7 @@ export default function RatingForm({ onNewRating }) {
           <p className="text-red-600 text-sm mt-1">{errors.mealTag}</p>
         )}
       </div>
-  
+
       <label className="block mb-4">
         <span className="block mb-1 text-sm md:text-md font-medium text-pink-700">
           Rating (1-5):
@@ -287,7 +304,8 @@ export default function RatingForm({ onNewRating }) {
             setRating(val);
             setErrors((err) => ({
               ...err,
-              rating: val < 1 || val > 5 ? "Rating must be between 1 and 5" : null,
+              rating:
+                val < 1 || val > 5 ? "Rating must be between 1 and 5" : null,
             }));
           }}
           required
@@ -299,7 +317,7 @@ export default function RatingForm({ onNewRating }) {
           <p className="text-red-600 text-sm mt-1">{errors.rating}</p>
         )}
       </label>
-  
+
       <label className="block mb-3">
         <span className="block mb-1 font-medium text-sm md:text-md text-pink-700">
           Comment:
@@ -311,7 +329,8 @@ export default function RatingForm({ onNewRating }) {
             setComment(txt);
             setErrors((err) => ({
               ...err,
-              comment: txt.length < 5 ? "Comment must be at least 5 characters" : null,
+              comment:
+                txt.length < 5 ? "Comment must be at least 5 characters" : null,
             }));
           }}
           required
@@ -324,7 +343,7 @@ export default function RatingForm({ onNewRating }) {
           <p className="text-red-600 text-sm mt-1">{errors.comment}</p>
         )}
       </label>
-  
+
       <label className="flex items-center mb-4">
         <input
           type="checkbox"
@@ -337,7 +356,7 @@ export default function RatingForm({ onNewRating }) {
           Submit anonymously
         </span>
       </label>
-  
+
       <label className="block mb-7">
         <span className="block mb-1 text-sm md:text-md font-medium text-pink-700">
           Upload Image (optional):
@@ -348,7 +367,8 @@ export default function RatingForm({ onNewRating }) {
           onChange={(e) => {
             const file = e.target.files[0];
             let fileError = null;
-            if (file && file.size > 2_000_000) fileError = "File must be under 2MB";
+            if (file && file.size > 2_000_000)
+              fileError = "File must be under 2MB";
             setErrors((err) => ({ ...err, image: fileError }));
             if (!fileError) {
               setImageFile(file);
@@ -362,9 +382,9 @@ export default function RatingForm({ onNewRating }) {
           <p className="text-red-600 text-sm mt-1">{errors.image}</p>
         )}
       </label>
-  
+
       {imagePreview && (
-        <div className="mb-4">
+        <div className="mb-3">
           <p className="font-medium text-pink-700 mb-1">Image Preview:</p>
           <img
             src={imagePreview}
@@ -373,16 +393,15 @@ export default function RatingForm({ onNewRating }) {
           />
         </div>
       )}
-  
+
       <button
         type="submit"
         disabled={isSubmitting}
-        className="mt-1 w-full text-sm md:text-md btn-primary-gradient font-semibold py-2 rounded-md hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed"
+        className=" w-full text-sm md:text-md btn-primary-gradient font-semibold py-2 rounded-md hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed"
         style={{ marginBottom: "80px" }} // padding so button not behind footer
       >
         {isSubmitting ? "Submitting..." : "Submit Rating"}
       </button>
     </form>
   );
-  
 }

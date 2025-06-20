@@ -118,7 +118,7 @@ export default function Navbar({ onLogout }) {
   // );
 
   return (
-    <nav className="bg-white shadow-md border-b border-gray-200 opacity-90 fixed top-0 left-0 right-0 z-50">
+    <nav className="bg-white shadow-md  border-b border-gray-200 opacity-90 fixed top-0 left-0 right-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Brand */}
         <Link to="/home" className="no-underline ">

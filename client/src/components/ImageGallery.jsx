@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ImageModal from "./ImageModal";
 
 export default function ImageGallery({ images }) {
@@ -7,7 +7,7 @@ export default function ImageGallery({ images }) {
   console.log("Images received in gallery:", images); // Debug log
 
   return (
-    <div className="w-full">
+    <div className="w-full mb-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {images.map(({ src, alt, createdAt }, idx) => {
           console.log("Processing image:", { src, alt, createdAt }); // Debug log

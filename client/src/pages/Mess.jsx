@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 import RatingForm from "../components/RatingForm.jsx";
 // import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import { ChartBarIcon, ArrowDownCircleIcon } from "@heroicons/react/24/outline";
-import { AiFillStar } from "react-icons/ai";
+import { ArrowDownCircleIcon, ChartBarIcon } from "@heroicons/react/24/outline";
 import { Utensils } from "lucide-react";
-import { FaUser } from "react-icons/fa";
+import { AiFillStar } from "react-icons/ai";
+import { FaArrowDown, FaArrowUp, FaUser } from "react-icons/fa";
 
-import parseJWT from "../utils/parseJWT.js";
-import MessTimetable from "../components/MessTimetable";
 import { useRef } from "react";
+import MessTimetable from "../components/MessTimetable";
+import parseJWT from "../utils/parseJWT.js";
 // import html2pdf from "html2pdf.js";
-import RatingPieChart from "../components/RatingPieChart"; // adjust path if needed
-import React, { useMemo } from "react";
-import SummaryCard from "../components/SummaryCard";
-import RatingTrendChart from "../components/RatingTrendChart"; // adjust path if needed
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
+import { useMemo } from "react";
 import ImageGallery from "../components/ImageGallery"; // adjust path if needed
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
+import RatingPieChart from "../components/RatingPieChart"; // adjust path if needed
+import RatingTrendChart from "../components/RatingTrendChart"; // adjust path if needed
+import SummaryCard from "../components/SummaryCard";
 
 export default function MessRating() {
   const [message, setMessage] = useState("");
@@ -38,15 +37,35 @@ export default function MessRating() {
 
   // Add this near the top of your Mess.jsx component, with other state declarations
   const mealOptions = [
-    'Monday-Breakfast', 'Monday-Lunch', 'Monday-Snacks', 'Monday-Dinner',
-    'Tuesday-Breakfast', 'Tuesday-Lunch', 'Tuesday-Snacks', 'Tuesday-Dinner',
-    'Wednesday-Breakfast', 'Wednesday-Lunch', 'Wednesday-Snacks', 'Wednesday-Dinner',
-    'Thursday-Breakfast', 'Thursday-Lunch', 'Thursday-Snacks', 'Thursday-Dinner',
-    'Friday-Breakfast', 'Friday-Lunch', 'Friday-Snacks', 'Friday-Dinner',
-    'Saturday-Breakfast', 'Saturday-Lunch', 'Saturday-Snacks', 'Saturday-Dinner',
-    'Sunday-Breakfast', 'Sunday-Lunch', 'Sunday-Snacks', 'Sunday-Dinner'
+    "Monday-Breakfast",
+    "Monday-Lunch",
+    "Monday-Snacks",
+    "Monday-Dinner",
+    "Tuesday-Breakfast",
+    "Tuesday-Lunch",
+    "Tuesday-Snacks",
+    "Tuesday-Dinner",
+    "Wednesday-Breakfast",
+    "Wednesday-Lunch",
+    "Wednesday-Snacks",
+    "Wednesday-Dinner",
+    "Thursday-Breakfast",
+    "Thursday-Lunch",
+    "Thursday-Snacks",
+    "Thursday-Dinner",
+    "Friday-Breakfast",
+    "Friday-Lunch",
+    "Friday-Snacks",
+    "Friday-Dinner",
+    "Saturday-Breakfast",
+    "Saturday-Lunch",
+    "Saturday-Snacks",
+    "Saturday-Dinner",
+    "Sunday-Breakfast",
+    "Sunday-Lunch",
+    "Sunday-Snacks",
+    "Sunday-Dinner",
   ];
-
 
   const handleDownloadPDF = async () => {
     const element = timetableRef.current;
@@ -59,10 +78,12 @@ export default function MessRating() {
 
     try {
       // Show loading state
-      const button = document.querySelector('button[onClick="handleDownloadPDF"]');
+      const button = document.querySelector(
+        'button[onClick="handleDownloadPDF"]'
+      );
       if (button) {
         const originalText = button.textContent;
-        button.textContent = 'Generating PDF...';
+        button.textContent = "Generating PDF...";
         button.disabled = true;
       }
 
@@ -73,19 +94,21 @@ export default function MessRating() {
         scale: 2,
         useCORS: true,
         allowTaint: true,
-        backgroundColor: '#ffffff',
+        backgroundColor: "#ffffff",
         logging: true, // Enable logging for debugging
         onclone: (clonedDoc) => {
           // Ensure all images are loaded in the cloned document
-          const images = clonedDoc.getElementsByTagName('img');
-          return Promise.all(Array.from(images).map(img => {
-            if (img.complete) return Promise.resolve();
-            return new Promise(resolve => {
-              img.onload = resolve;
-              img.onerror = resolve;
-            });
-          }));
-        }
+          const images = clonedDoc.getElementsByTagName("img");
+          return Promise.all(
+            Array.from(images).map((img) => {
+              if (img.complete) return Promise.resolve();
+              return new Promise((resolve) => {
+                img.onload = resolve;
+                img.onerror = resolve;
+              });
+            })
+          );
+        },
       });
 
       console.log("Canvas created successfully");
@@ -97,22 +120,22 @@ export default function MessRating() {
 
       // Create PDF with specific options
       const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4',
-        compress: true
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+        compress: true,
       });
 
       console.log("PDF object created");
 
       // Add image to PDF with specific options
-      const imgData = canvas.toDataURL('image/jpeg', 1.0);
-      pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+      const imgData = canvas.toDataURL("image/jpeg", 1.0);
+      pdf.addImage(imgData, "JPEG", 0, 0, imgWidth, imgHeight);
 
       console.log("Image added to PDF");
 
       // Save the PDF
-      pdf.save('MessTimetable.pdf');
+      pdf.save("MessTimetable.pdf");
       console.log("PDF saved successfully");
 
       // Reset button state
@@ -121,13 +144,15 @@ export default function MessRating() {
         button.disabled = false;
       }
     } catch (error) {
-      console.error('Detailed error in PDF generation:', error);
-      alert('Failed to generate PDF. Please check console for details.');
+      console.error("Detailed error in PDF generation:", error);
+      alert("Failed to generate PDF. Please check console for details.");
 
       // Reset button state
-      const button = document.querySelector('button[onClick="handleDownloadPDF"]');
+      const button = document.querySelector(
+        'button[onClick="handleDownloadPDF"]'
+      );
       if (button) {
-        button.textContent = 'Download Timetable as PDF';
+        button.textContent = "Download Timetable as PDF";
         button.disabled = false;
       }
     }
@@ -166,22 +191,23 @@ export default function MessRating() {
       .then((data) => {
         setMessage("");
         // Process the data to ensure all required fields exist
-        const processedData = data.map(rating => ({
+        const processedData = data.map((rating) => ({
           ...rating,
-          mealTag: rating.mealTag || 'No meal specified',
+          mealTag: rating.mealTag || "No meal specified",
           rating: rating.rating || 0,
-          comment: rating.comment || '',
+          comment: rating.comment || "",
           date: rating.date || new Date().toISOString(),
           user: rating.user || null,
           image: rating.image || null,
           upvotes: rating.upvotes || [],
-          downvotes: rating.downvotes || []
+          downvotes: rating.downvotes || [],
         }));
         setRatings(processedData);
         setLoading(false);
 
         // Process upvotes and downvotes
-        const ups = {}, downs = {};
+        const ups = {},
+          downs = {};
         processedData.forEach((r) => {
           ups[r._id] = r.upvotes?.length || 0;
           downs[r._id] = r.downvotes?.length || 0;
@@ -291,8 +317,8 @@ export default function MessRating() {
     const average =
       totalRatings > 0
         ? (
-          displayed.reduce((sum, r) => sum + r.rating, 0) / totalRatings
-        ).toFixed(2)
+            displayed.reduce((sum, r) => sum + r.rating, 0) / totalRatings
+          ).toFixed(2)
         : 0;
 
     const { highest, lowest } = getDayStats(displayed);
@@ -362,7 +388,7 @@ export default function MessRating() {
           const processedImage = {
             src: `${import.meta.env.VITE_BACKEND_URI}${img.path}`,
             alt: img.filename,
-            createdAt: img.createdAt
+            createdAt: img.createdAt,
           };
           console.log("Processed image:", processedImage); // Debug log
           return processedImage;
@@ -375,7 +401,6 @@ export default function MessRating() {
         console.error("Error details:", err.message);
       });
   }, []);
-
 
   // return (
   //   <div className="flex tracking-wide flex-col mb-6 max-h-full max-w-6xl mx-auto p-4">
@@ -598,26 +623,26 @@ export default function MessRating() {
   // );
 
   return (
-    <div className="flex tracking-wide flex-col mt-12 mb-6 max-h-full max-w-6xl mx-auto p-4">
+    <div className="flex tracking-wide flex-col mt-12 mb-6 max-h-full max-w-6xl  mx-auto p-4">
       {/* <h2 className="text-2xl font-bold mb-3">Rate My Mess</h2> */}
 
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 flex-grow">
         {/* Form side: fixed width */}
-        <div className="w-full md:w-1/2 flex flex-col">
+        <div className="w-full md:w-1/2 h-[72vh] flex flex-col">
           <RatingForm onNewRating={handleNewRating} />
         </div>
 
         {/* Ratings side: scrollable */}
-        <div className="w-full mt-3 md:w-1/2 h-[72vh] overflow-y-auto border border-pink-400 rounded-md p-4 bg-pink-10">
+        <div className="w-full mt-3 md:w-1/2 h-[72vh] overflow-y-auto border bg-rose-100 shadow-sm border-none rounded-md p-4 bg-pink-10">
           <h3 className="text-md md:text-xl font-semibold mb-4 text-pink-700">
             Previous Ratings
           </h3>
           {/* SORT & FILTER CONTROLS */}
-          <div className="mb-4 text-sm md:text-md  flex items-center space-x-4">
+          <div className="mb-4 text-sm md:text-md text-gray-700  flex items-center space-x-4">
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
-              className="border border-pink-300 px-2 py-1 bg-white rounded focus:outline-none focus:ring-0 focus:border-pink-400"
+              className="border border-rose-200 px-2 py-1 bg-white rounded focus:outline-none focus:ring-0 focus:border-pink-400"
             >
               <option value="newest">Newest</option>
               <option value="highest">Highest Rating</option>
@@ -627,7 +652,7 @@ export default function MessRating() {
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="border border-pink-300 bg-white px-2 py-1 rounded focus:outline-none focus:ring-0 focus:border-pink-400"
+              className="border border-rose-200 bg-white px-2 py-1 rounded focus:outline-none focus:ring-0 focus:border-pink-400"
             >
               <option value="all">All</option>
               <option value="mine">My Ratings</option>
@@ -637,12 +662,12 @@ export default function MessRating() {
             <select
               value={mealFilter}
               onChange={(e) => setMealFilter(e.target.value)}
-              className="border border-pink-300 px-2 py-1 bg-white rounded focus:outline-none focus:ring-0 focus:border-pink-400"
+              className="border border-rose-200 px-2 py-1 bg-white rounded focus:outline-none focus:ring-0 focus:border-pink-400"
             >
               <option value="all">All Meals</option>
               {mealOptions.map((option) => (
                 <option key={option} value={option}>
-                  {option.replace('-', ' ')}
+                  {option.replace("-", " ")}
                 </option>
               ))}
             </select>
@@ -678,39 +703,39 @@ export default function MessRating() {
                 const {
                   _id,
                   rating: ratingValue = 0,
-                  comment = '',
+                  comment = "",
                   date = new Date().toISOString(),
                   user = null,
                   image = null,
-                  mealTag = 'No meal specified'
+                  mealTag = "No meal specified",
                 } = rating;
 
                 return (
                   <li
                     key={_id}
-                    className="mb-4 p-4 text-sm md:text-md border border-pink-300 rounded-md bg-white transition-colors duration-500 ease-in-out hover:shadow-lg hover:scale-[1.01]"
+                    className="mb-4 p-4 text-sm md:text-md border border-rose-200 rounded-md bg-white transition-colors duration-500 ease-in-out hover:shadow-lg hover:scale-[1.01]"
                   >
                     <div className="flex justify-between items-center mb-2">
                       <div>
                         <span className="font-semibold text-pink-700 mr-2">
                           {"⭐".repeat(ratingValue)}
                         </span>
-                        <small className="text-pink-800">
+                        <small className="text-red-700 bg-red-100 px-2 py-1 rounded-md">
                           {new Date(date).toLocaleString()}
                         </small>
                       </div>
-                      <div className="text-sm italic text-pink-700 leading-relaxed">
+                      <small className=" italic bg-red-400 text-pink-50 px-2 py-1 rounded-xl hover:scale-105 transition-transform duration-150 ease-in hover:cursor-pointer leading-relaxed">
                         {user?.username ? user.username : "Anonymous"}
-                      </div>
+                      </small>
                     </div>
 
-                    <div className="text-sm text-pink-700 mb-2">
-                      {mealTag && mealTag !== 'No meal specified'
-                        ? mealTag.replace('-', ' ')
-                        : 'No meal specified'}
+                    <div className="text-sm text-pink-800 mb-3">
+                      {mealTag && mealTag !== "No meal specified"
+                        ? mealTag.replace("-", " ")
+                        : "No meal specified"}
                     </div>
 
-                    <p className="text-pink-600">{comment}</p>
+                    <p className="text-gray-600">{comment}</p>
 
                     {image && (
                       <img
@@ -744,7 +769,7 @@ export default function MessRating() {
         </div>
       </div>
 
-      <div className="mt-6 mb-6 p-6 border border-pink-300 rounded-md bg-white">
+      <div className="mt-30 mb-6 p-6 border border-pink-300 rounded-md bg-white">
         <div className="w-full flex justify-between items-center">
           <h3 className="text-md md:text-lg font-semibold mb-3 text-pink-700">
             Mess Menu
@@ -779,8 +804,6 @@ export default function MessRating() {
           color="text-pink-600"
         />
 
-
-
         <SummaryCard
           icon={<ChartBarIcon className="w-8 h-8 mx-auto text-pink-600" />}
           label="Best Rated Day"
@@ -793,7 +816,9 @@ export default function MessRating() {
         />
 
         <SummaryCard
-          icon={<ArrowDownCircleIcon className="w-8 h-8 mx-auto text-pink-600" />}
+          icon={
+            <ArrowDownCircleIcon className="w-8 h-8 mx-auto text-pink-600" />
+          }
           label="Lowest Rated Day"
           value={
             lowestRatedDay
@@ -819,12 +844,11 @@ export default function MessRating() {
         <div className="flex justify-start align-center w-auto gap-3">
           <Utensils className="w-5 h-5 text-pink-700 " />
           <h2 className="text-xl font-semibold mb-4 text-pink-700">
-            Food Gallery</h2>
+            Food Gallery
+          </h2>
         </div>
         <ImageGallery images={images} />
       </div>
     </div>
   );
-
-
 }

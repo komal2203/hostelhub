@@ -10,7 +10,7 @@ body,
 /* For debugging, force this gradient style */
 .btn-primary-gradient {
   /* background: linear-gradient(90deg, #ff246d 0%, #ff4bc3 100%); */
-  background: linear-gradient(to right, #dc2626, #db2777, #f472b6);
+  background: linear-gradient(to right, #dc2626, #f01717, #f72491);
 
   color: white;
 }

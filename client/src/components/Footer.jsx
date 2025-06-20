@@ -14,7 +14,7 @@
 export default function Footer() {
   return (
     <footer
-      className="fixed z-10 bottom-0 left-0 w-full bg-gradient-to-r from-red-600 via-pink-600 to-pink-400 shadow-md text-white p-4 text-center"
+      className="fixed z-10 bottom-0 left-0 w-full bg-gradient-to-r from-red-700 via-red-500 to-pink-500 shadow-md text-white pr-4 pl-4 pt-2.5 pb-2.5 text-center"
       role="contentinfo"
     >
       <p className="text-sm">

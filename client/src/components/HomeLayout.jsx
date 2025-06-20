@@ -6,7 +6,7 @@ export default function HomeLayout({ onLogout }) {
   return (
     <>
       <Navbar onLogout={onLogout} />
-      <main className="min-h-screen bg-gray-100">
+      <main className="min-h-screen bg-gray-50">
         <Outlet />
       </main>
       <Footer />
