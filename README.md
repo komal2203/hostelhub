@@ -38,8 +38,11 @@
 - **Deployment**: Render.com  
 
 ---
+## Live Demo 
 
-**🌐 [Live Site](https://hostelhub-frontend.onrender.com)**
+Explore the live site here:  
+👉 **[Live Link](https://hostelhub-frontend.onrender.com)**
+
 ---
 
 
