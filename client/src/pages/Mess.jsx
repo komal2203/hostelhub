@@ -623,7 +623,7 @@ export default function MessRating() {
   // );
 
   return (
-    <div className="flex tracking-wide flex-col mt-12 mb-6 max-h-full max-w-6xl  mx-auto p-4">
+    <div className="flex tracking-wide flex-col mt-12 mb-10 max-h-full max-w-6xl  mx-auto p-4">
       {/* <h2 className="text-2xl font-bold mb-3">Rate My Mess</h2> */}
 
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 flex-grow">

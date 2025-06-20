@@ -174,7 +174,7 @@ export default function Login({ onLogin }) {
 
         <button
           type="submit"
-          className="w-full py-3 rounded-lg font-semibold text-white text-lg btn-primary-gradient focus:outline-none hover:brightness-110 shadow-md hover:shadow-lg transition duration-300"
+          className="w-full py-3 rounded-lg font-semibold text-white text-lg btn-primary-gradient focus:outline-none hover:brightness-120 shadow-md hover:shadow-lg transition duration-300"
         >
           Login
         </button>

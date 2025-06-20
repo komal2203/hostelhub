@@ -208,7 +208,7 @@ export default function Register({ onRegister }) {
 
         <button
           type="submit"
-          className="w-full py-3 rounded-lg font-semibold text-white text-lg btn-primary-gradient focus:outline-none  hover:brightness-110 hover:from-pink-600 hover:to-pink-800 shadow-md hover:shadow-lg transition duration-300"
+          className="w-full py-3 rounded-lg font-semibold text-white text-lg btn-primary-gradient focus:outline-none  hover:brightness-120 hover:from-pink-600 hover:to-pink-800 shadow-md hover:shadow-lg transition duration-300"
         >
           Sign Up
         </button>

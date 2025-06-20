@@ -583,7 +583,7 @@ export default function HomePage() {
             </p>
             <Link
               to="/home/mess"
-              className="btn-primary-gradient hover:brightness-110 text-white px-8 py-3 rounded-full text-sm md:text-lg font-semibold transition duration-300"
+              className="btn-primary-gradient hover:brightness-120 text-white px-8 py-3 rounded-full text-sm md:text-lg font-semibold transition duration-300"
             >
               Get Started
             </Link>
@@ -723,7 +723,7 @@ export default function HomePage() {
             {[
               {
                 initial: "R",
-                name: "Rahul Sharma",
+                name: "Diya Sharma",
                 yearDept: "3rd Year, CSE",
                 quote:
                   "HostelHub made it so easy to find my lost laptop. The community is really helpful!",
@@ -737,10 +737,10 @@ export default function HomePage() {
               },
               {
                 initial: "A",
-                name: "Amit Kumar",
+                name: "Tanya Sahu",
                 yearDept: "1st Year, ME",
                 quote:
-                  "Quick polls feature helped us decide on hostel events. Really useful for student participation!",
+                  "Mess rating feedback made our food better. Our voices are heard!",
               },
             ].map(({ initial, name, yearDept, quote }, i) => (
               <motion.div
