@@ -769,7 +769,7 @@ export default function MessRating() {
         </div>
       </div>
 
-      <div className="mt-30 mb-6 p-6 border border-pink-300 rounded-md bg-white">
+      <div className="mt-50 mb-6 p-6 border border-pink-300 rounded-md bg-white">
         <div className="w-full flex justify-between items-center">
           <h3 className="text-md md:text-lg font-semibold mb-3 text-pink-700">
             Mess Menu
