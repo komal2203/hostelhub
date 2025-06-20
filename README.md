@@ -39,10 +39,7 @@
 
 ---
 
-## 🌐 Live Demo
-
-> [https://hostelhub-frontend.onrender.com]
-
+**🌐 [Live Site](https://hostelhub-frontend.onrender.com)**
 ---
 
 
