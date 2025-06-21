@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from 'url';
+import multer from "multer";
 
 // Import routes
 import messRoutes from './routes/mess.js';
@@ -67,6 +68,31 @@ app.get("/api/images", async (req, res) => {
     console.error("Error getting images:", err);
     res.status(500).json({ error: "Failed to process images" });
   }
+});
+
+// Set up multer for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadsDir);
+  },
+  filename: function (req, file, cb) {
+    // Use Date.now() for unique file names
+    const ext = path.extname(file.originalname);
+    cb(null, Date.now() + '-' + Math.round(Math.random() * 1E9) + ext);
+  }
+});
+const upload = multer({ storage: storage });
+
+// Upload endpoint
+app.post('/api/upload', upload.single('image'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No file uploaded" });
+  }
+  res.json({
+    path: `/uploads/${req.file.filename}`,
+    filename: req.file.filename,
+    createdAt: new Date()
+  });
 });
 
 app.use('/api/mess', messRoutes);
