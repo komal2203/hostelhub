@@ -23,7 +23,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://hostelhub-frontend.onrender.com', // your deployed frontend URL
+    'http://localhost:5173' // (optional) for local dev
+  ],
+  credentials: true // if you use cookies/auth
+}));
 app.use(express.json());
 
 const uploadsDir = path.join(__dirname, "uploads");
